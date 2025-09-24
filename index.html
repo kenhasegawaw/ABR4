@@ -1,4 +1,54 @@
 <!DOCTYPE html>
+<html lang="ja">
+  
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Web Barcode Scanner</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <h1>バーコードスキャナー 0.0.5</h1>
+    </header>
+    <main class="layout">
+      <section class="scanner-panel">
+        <div class="video-wrapper">
+          <video id="preview" playsinline autoplay muted></video>
+          <canvas id="overlay"></canvas>
+          <div id="permission-hint" class="hint hidden">
+            カメラ利用が許可されていません。ブラウザの設定を確認してください。
+          </div>
+        </div>
+        <textarea
+          id="detected-values"
+          class="results-textarea"
+          readonly
+          placeholder="検出結果がここに表示されます"
+        ></textarea>
+        <div class="controls">
+          <div class="button-row">
+            <button id="start-button" type="button">開始</button>
+            <button id="stop-button" type="button" disabled>停止</button>
+            <button id="clear-results" type="button">クリア</button>
+          </div>
+          <select id="camera-select" aria-label="使用するカメラ"></select>
+          <output id="status" class="status">準備完了</output>
+          <select id="algorithm-select" aria-label="検出アルゴリズム"></select>
+        </div>
+        <ul id="detected-list" class="result-list"></ul>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p>BarcodeDetector API と ZXing を用いたフォールバックで動作します。</p>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
+
+<!DOCTYPE html>
 
 <html lang="ja">
   <head>
